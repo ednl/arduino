@@ -8,28 +8,28 @@ Adafruit_DotStar m4dot(1, 8, 6, DOTSTAR_BRG);
 // Simulated ISR for LED heartbeat
 void heartbeat()
 {
-  static unsigned int t = HBPERIOD;  // start high
+	static unsigned int t = HBPERIOD;  // start high
 
-  if (t == HBPERIOD) {
-    // Rising edge at start/end of period
-    digitalWrite(HBLEDPIN, HIGH);
-    t = 0;
-  } else if (t == HBDUTY) {
-    // Falling edge at end of duty cycle
-    digitalWrite(HBLEDPIN, LOW);
-  }
-  ++t;
+	if (t == HBPERIOD) {
+		// Rising edge at start/end of period
+		digitalWrite(HBLEDPIN, HIGH);
+		t = 0;
+	} else if (t == HBDUTY) {
+		// Falling edge at end of duty cycle
+		digitalWrite(HBLEDPIN, LOW);
+	}
+	++t;
 }
 
 void setup()
 {
-  m4dot.begin();
-  m4dot.show();  // ItsyBitsy M4 DotStar LED = off
-  pinMode(HBLEDPIN, OUTPUT);
+	m4dot.begin();
+	m4dot.show();  // ItsyBitsy M4 DotStar LED = off
+	pinMode(HBLEDPIN, OUTPUT);
 }
 
 void loop()
 {
-  heartbeat();
-  // Do other work here (which will slow down the heartbeat)
+	heartbeat();
+	// Do other work here (which will slow down the heartbeat)
 }
